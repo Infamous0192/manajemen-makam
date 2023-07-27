@@ -32,6 +32,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::resource('user', App\Http\Controllers\UserController::class);
     Route::resource('mampu', App\Http\Controllers\MampuController::class);
+
+    Route::resource('tpu', App\Http\Controllers\TpuController::class);
+    Route::resource('makam', App\Http\Controllers\MakamController::class);
+    Route::resource('jenazah-kenal', App\Http\Controllers\JenazahKenalController::class);
+    Route::resource('jenazah', App\Http\Controllers\JenazahController::class);
+    Route::resource('pesanan', App\Http\Controllers\PesananController::class);
+    Route::resource('tumpangan', App\Http\Controllers\TumpanganController::class);
+
     Route::get('get-mampu', [App\Http\Controllers\MampuController::class, 'getMampu'])->name('get.mampu');
     Route::get('/laporan/mampu', [App\Http\Controllers\LaporanController::class, 'mampu'])->name('laporan.mampu');
     Route::get('/laporan/waris', [App\Http\Controllers\LaporanController::class, 'waris'])->name('laporan.waris');
