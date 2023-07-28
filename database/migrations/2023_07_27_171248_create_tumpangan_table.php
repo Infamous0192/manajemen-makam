@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tumpangan', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('nama_pemohon', 50);
             $table->string('tempat_lahir', 50);
             $table->date('tanggal_lahir');
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('agama', 50);
             $table->text('alamat');
             $table->date('tanggal_meninggal');
-            $table->integer('id_jenazah');
+            $table->integer('id_jenazah')->unsigned();
             $table->timestamps();
 
             $table->foreign('id_jenazah')

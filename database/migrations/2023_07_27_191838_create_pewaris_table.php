@@ -13,25 +13,29 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('jenazah_kenal', function (Blueprint $table) {
+        Schema::create('pewaris', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama', 50);
-            $table->string('tempat_ditemukan', 50);
-            $table->date('tanggal_ditemukan');
+            $table->char('nik', 16);
+            $table->string('tempat_lahir', 50);
+            $table->date('tanggal_lahir');
             $table->enum('jenis_kelamin', ['laki', 'perempuan']);
             $table->string('kewarganegaraan', 50);
             $table->string('provinsi', 50);
             $table->string('kabupaten', 50);
             $table->string('kecamatan', 50);
             $table->string('kelurahan', 50);
-            $table->integer('rt');
-            $table->integer('rw');
-            $table->integer('id_makam')->unsigned()->unique();
+            $table->text('alamat');
+            $table->string('no_hp', 50);
+            $table->string('agama', 50);
+            $table->string('pendidikan', 50);
+            $table->string('pekerjaan', 50);
+            $table->integer('id_mendiang')->unsigned();
             $table->timestamps();
 
-            $table->foreign('id_makam')
+            $table->foreign('id_mendiang')
                 ->references('id')
-                ->on('makam')
+                ->on('jenazah')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
         });
@@ -44,6 +48,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jenazah_kenal');
+        Schema::dropIfExists('pewaris');
     }
 };

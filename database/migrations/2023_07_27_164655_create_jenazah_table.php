@@ -14,19 +14,23 @@ return new class extends Migration
     public function up()
     {
         Schema::create('jenazah', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('nama', 50);
             $table->char('nik', 16);
             $table->string('tempat_lahir', 50);
             $table->date('tanggal_lahir');
             $table->enum('jenis_kelamin', ['laki', 'perempuan']);
             $table->boolean('status_kawin');
+            $table->string('kewarganegaraan', 50);
             $table->string('provinsi', 50);
             $table->string('kabupaten', 50);
             $table->string('kecamatan', 50);
             $table->string('kelurahan', 50);
+            $table->integer('rt');
+            $table->integer('rw');
             $table->text('alamat_ktp');
             $table->text('alamat_sekarang');
+            $table->enum('status_tinggal', ['tetap', 'kontrak']);
             $table->string('agama', 50);
             $table->string('pendidikan', 50);
             $table->string('pekerjaan', 50);

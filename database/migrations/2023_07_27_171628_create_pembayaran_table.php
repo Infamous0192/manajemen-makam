@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pembayaran', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->enum('jenis', ['baru', 'perpanjangan']);
             $table->integer('jumlah');
             $table->integer('id_jenazah')->unsigned();

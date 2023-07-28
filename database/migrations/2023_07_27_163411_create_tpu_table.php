@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tpu', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('nama', 50);
             $table->string('alamat', 100);
             $table->string('provinsi', 50);
