@@ -44,4 +44,14 @@ class LoginController extends Controller
     {
         Alert::success('Success', 'Login Berhasil');
     }
+
+    public function username()
+    {
+        return 'username';
+    }
+
+    public function name()
+    {
+        return 'nama';
+    }
 }

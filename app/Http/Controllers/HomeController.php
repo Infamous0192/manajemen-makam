@@ -26,9 +26,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $kenal = Kenal::get()->count();
-        $mampu = Mampu::get()->count();
-        $waris = Waris::get()->count();
+        $kenal = 12;
+        $mampu = 50;
+        $waris = 12;
 
         return view('home', [
             'kenal' => $kenal,
