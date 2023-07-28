@@ -14,6 +14,7 @@
     <div class="col-sm-10">
         <select id="{{ $name }}" class="form-control selectpicker @error($name) is-invalid @enderror" name="{{ $name }}"
             value="{{ old($name, $value) }}" placeholder="{{ $placeholder }}" {{ $required=='true' ? 'required' : '' }}>
+            <option value="" {{ old($name, $value)=='' ? 'selected' : '' }}>{{ $placeholder }}</option>
             @foreach ($data as $item)
             <option value="{{ $item['value'] }}" {{ old($name, $value)==$item['value'] ? 'selected' : '' }}>{{
                 $item['label'] }}</option>

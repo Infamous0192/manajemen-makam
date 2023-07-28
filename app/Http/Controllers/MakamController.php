@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Makam;
 use App\Http\Requests\MakamRequest;
+use App\Models\Tpu;
 use Illuminate\Http\Request;
 
 class MakamController extends Controller
@@ -26,7 +27,11 @@ class MakamController extends Controller
      */
     public function create()
     {
-        return view('makam.create');
+        $tpu = Tpu::all()->map(function ($item, $key) {
+            return ['label' => $item->nama, 'value' => $item->id];
+        });
+
+        return view('makam.create', compact('tpu'));
     }
 
     /**
@@ -49,7 +54,11 @@ class MakamController extends Controller
      */
     public function show(Makam $makam)
     {
-        return view('makam.show', compact('makam'));
+        $tpu = Tpu::all()->map(function ($item, $key) {
+            return ['label' => $item->nama, 'value' => $item->id];
+        });
+
+        return view('makam.show', compact('makam', 'tpu'));
     }
 
     /**
@@ -60,7 +69,11 @@ class MakamController extends Controller
      */
     public function edit(Makam $makam)
     {
-        return view('makam.edit', compact('makam'));
+        $tpu = Tpu::all()->map(function ($item, $key) {
+            return ['label' => $item->nama, 'value' => $item->id];
+        });
+
+        return view('makam.edit', compact('makam', 'tpu'));
     }
 
     /**

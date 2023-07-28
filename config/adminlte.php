@@ -346,7 +346,7 @@ return [
                     'icon' => 'far fa-fw fa-circle',
                 ],
                 [
-                    'text' => 'Makam',
+                    'text' => 'Blok Makam',
                     'route'  => 'makam.index',
                     'icon' => 'far fa-fw fa-circle',
                 ],
