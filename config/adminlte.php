@@ -16,7 +16,7 @@ return [
 
     'title' => 'Aplikasi ',
     'title_prefix' => '',
-    'title_postfix' => '',
+    'title_postfix' => 'Manajemen Makam',
 
     /*
     |--------------------------------------------------------------------------
@@ -317,31 +317,49 @@ return [
             'icon' => 'fas fa-fw fa-users',
         ],
         [
-            'text'  => 'PROFIL',
+            'text'  => 'Profile',
             'route'   => 'profile',
             'icon' => 'fas fa-fw fa-users',
         ],
         [
-            'text'    => 'DATA JENAZAH',
-            'icon'        => 'fas fa-fw fa-users',
+            'text'    => 'Data Master',
+            'icon'    => 'fas fa-fw fa-layer-group',
             'submenu' => [
                 [
-                    'text' => 'Jenazah Tidak Mampu',
-                    'route'  => 'mampu.index',
-                    'icon' => 'fas fa-fw fa-user',
+                    'text' => 'Jenazah',
+                    'route'  => 'jenazah.index',
+                    'icon' => 'far fa-fw fa-circle',
                 ],
                 [
                     'text' => 'Jenazah Tidak Dikenal',
-                    'route'  => 'kenal.index',
-                    'icon' => 'fas fa-fw fa-user',
+                    'route'  => 'jenazah-kenal.index',
+                    'icon' => 'far fa-fw fa-circle',
                 ],
                 [
                     'text' => 'Ahli Waris',
-                    'route'  => 'waris.index','route'  => 'waris.index',
-                    'icon' => 'fas fa-fw fa-user',
+                    'route'  => 'waris.index',
+                    'icon' => 'far fa-fw fa-circle',
                 ],
-
-
+                [
+                    'text' => 'TPU',
+                    'route'  => 'tpu.index',
+                    'icon' => 'far fa-fw fa-circle',
+                ],
+                [
+                    'text' => 'Makam',
+                    'route'  => 'makam.index',
+                    'icon' => 'far fa-fw fa-circle',
+                ],
+                [
+                    'text' => 'Pemesanan',
+                    'route'  => 'pesanan.index',
+                    'icon' => 'far fa-fw fa-circle',
+                ],
+                [
+                    'text' => 'Kas',
+                    'route'  => 'pembayaran.index',
+                    'icon' => 'far fa-fw fa-circle',
+                ],
             ],
         ],
         [
