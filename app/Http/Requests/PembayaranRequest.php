@@ -14,10 +14,11 @@ class PembayaranRequest extends FormRequest
     public function rules()
     {
         return [
+            'nama' => 'required|max:50',
             'jenis' => 'required|in:baru,perpanjangan',
             'jumlah' => 'required|integer',
             'id_jenazah' => 'required|integer|exists:jenazah,id',
-            'id_makam' => 'required|integer|exists:makam,id',
+            // 'id_makam' => 'required|integer|exists:makam,id',
         ];
     }
 }

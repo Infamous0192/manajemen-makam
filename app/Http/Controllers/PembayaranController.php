@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pembayaran;
 use App\Http\Requests\PembayaranRequest;
+use App\Models\Jenazah;
 use Illuminate\Http\Request;
 
 class PembayaranController extends Controller
@@ -26,7 +27,11 @@ class PembayaranController extends Controller
      */
     public function create()
     {
-        return view('pembayaran.create');
+        $jenazah = Jenazah::all()->map(function ($item, $key) {
+            return ['label' => $item->nama . ' (' . $item->nik . ')', 'value' => $item->id];
+        });
+
+        return view('pembayaran.create', compact('jenazah'));
     }
 
     /**
@@ -37,7 +42,10 @@ class PembayaranController extends Controller
      */
     public function store(PembayaranRequest $request)
     {
-        Pembayaran::create($request->validated());
+        $data = $request->validated();
+        $data['id_makam'] = Jenazah::find($request->get('id_jenazah'))->id_makam;
+
+        Pembayaran::create($data);
         return redirect()->route('pembayaran.index')->with('success', 'Pembayaran created successfully.');
     }
 
@@ -49,7 +57,11 @@ class PembayaranController extends Controller
      */
     public function show(Pembayaran $pembayaran)
     {
-        return view('pembayaran.show', compact('pembayaran'));
+        $jenazah = Jenazah::all()->map(function ($item, $key) {
+            return ['label' => $item->nama . ' (' . $item->nik . ')', 'value' => $item->id];
+        });
+
+        return view('pembayaran.show', compact('pembayaran', 'jenazah'));
     }
 
     /**
@@ -60,7 +72,11 @@ class PembayaranController extends Controller
      */
     public function edit(Pembayaran $pembayaran)
     {
-        return view('pembayaran.edit', compact('pembayaran'));
+        $jenazah = Jenazah::all()->map(function ($item, $key) {
+            return ['label' => $item->nama . ' (' . $item->nik . ')', 'value' => $item->id];
+        });
+
+        return view('pembayaran.edit', compact('pembayaran', 'jenazah'));
     }
 
     /**
@@ -72,7 +88,10 @@ class PembayaranController extends Controller
      */
     public function update(PembayaranRequest $request, Pembayaran $pembayaran)
     {
-        $pembayaran->update($request->validated());
+        $data = $request->validated();
+        $data['id_makam'] = Jenazah::find($request->get('id_jenazah'))->id_makam;
+
+        $pembayaran->update($data);
         return redirect()->route('pembayaran.index')->with('success', 'Pembayaran updated successfully.');
     }
 

@@ -28,4 +28,6 @@
         <i class="fa fa-print"></i>Print
     </a>
     @endif
+
+    {{ $slot }}
 </div>
