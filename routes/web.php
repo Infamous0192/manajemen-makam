@@ -35,6 +35,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('makam', App\Http\Controllers\MakamController::class);
     Route::resource('jenazah-kenal', App\Http\Controllers\JenazahKenalController::class);
     Route::resource('jenazah', App\Http\Controllers\JenazahController::class);
+    Route::resource('pewaris', App\Http\Controllers\PewarisController::class)->parameters([
+        'pewaris' => 'pewaris',
+    ]);
     Route::resource('pesanan', App\Http\Controllers\PesananController::class);
     Route::resource('tumpangan', App\Http\Controllers\TumpanganController::class);
     Route::resource('pembayaran', App\Http\Controllers\PembayaranController::class);

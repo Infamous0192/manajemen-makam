@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nama', 50);
             $table->char('nik', 16);
             $table->string('tempat_lahir', 50);
+            $table->string('status_waris', 50);
             $table->date('tanggal_lahir');
             $table->enum('jenis_kelamin', ['laki', 'perempuan']);
             $table->string('kewarganegaraan', 50);
@@ -26,6 +27,8 @@ return new class extends Migration
             $table->string('kecamatan', 50);
             $table->string('kelurahan', 50);
             $table->text('alamat');
+            $table->integer('rt');
+            $table->integer('rw');
             $table->string('no_hp', 50);
             $table->string('agama', 50);
             $table->string('pendidikan', 50);

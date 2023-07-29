@@ -23,6 +23,8 @@ class Pewaris extends Model
         'kabupaten',
         'kecamatan',
         'kelurahan',
+        'rt',
+        'rw',
         'alamat',
         'no_hp',
         'agama',
@@ -30,4 +32,9 @@ class Pewaris extends Model
         'pekerjaan',
         'id_mendiang',
     ];
+
+    public function mendiang()
+    {
+        return $this->belongsTo(Jenazah::class, 'id_mendiang');
+    }
 }

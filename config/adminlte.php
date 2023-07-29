@@ -337,7 +337,7 @@ return [
                 ],
                 [
                     'text' => 'Ahli Waris',
-                    'route'  => 'waris.index',
+                    'route'  => 'pewaris.index',
                     'icon' => 'far fa-fw fa-circle',
                 ],
                 [

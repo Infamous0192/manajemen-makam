@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pewaris;
 use App\Http\Requests\PewarisRequest;
+use App\Models\Jenazah;
 use Illuminate\Http\Request;
 
 class PewarisController extends Controller
@@ -26,7 +27,12 @@ class PewarisController extends Controller
      */
     public function create()
     {
-        return view('pewaris.create');
+        $mendiang = Jenazah::all()
+            ->map(function ($item, $key) {
+                return ['label' => $item->nama . ' (' . $item->nik . ')', 'value' => $item->id];
+            });
+
+        return view('pewaris.create', compact('mendiang'));
     }
 
     /**
@@ -49,7 +55,12 @@ class PewarisController extends Controller
      */
     public function show(Pewaris $pewaris)
     {
-        return view('pewaris.show', compact('pewaris'));
+        $mendiang = Jenazah::all()
+            ->map(function ($item, $key) {
+                return ['label' => $item->nama . ' (' . $item->nik . ')', 'value' => $item->id];
+            });
+
+        return view('pewaris.show', compact('pewaris', 'mendiang'));
     }
 
     /**
@@ -60,7 +71,12 @@ class PewarisController extends Controller
      */
     public function edit(Pewaris $pewaris)
     {
-        return view('pewaris.edit', compact('pewaris'));
+        $mendiang = Jenazah::all()
+            ->map(function ($item, $key) {
+                return ['label' => $item->nama . ' (' . $item->nik . ')', 'value' => $item->id];
+            });
+
+        return view('pewaris.edit', compact('pewaris', 'mendiang'));
     }
 
     /**

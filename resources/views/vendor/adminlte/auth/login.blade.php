@@ -27,7 +27,7 @@
         {{-- Username field --}}
         <div class="input-group mb-3">
             <input type="username" name="username" class="form-control @error('username') is-invalid @enderror"
-                   value="{{ old('username') }}" autofocus>
+                   value="{{ old('username') }}" placeholder="Username" autofocus>
 
             <div class="input-group-append">
                 <div class="input-group-text">
