@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class JenazahRequest extends FormRequest
 {
@@ -30,10 +31,13 @@ class JenazahRequest extends FormRequest
             'tanggal_lahir' => 'required|date',
             'jenis_kelamin' => 'required|in:laki,perempuan',
             'status_kawin' => 'required|boolean',
+            'kewarganegaraan' => 'required|string|max:50',
             'provinsi' => 'required|string|max:50',
             'kabupaten' => 'required|string|max:50',
             'kecamatan' => 'required|string|max:50',
             'kelurahan' => 'required|string|max:50',
+            'rt' => 'required|string|max:50',
+            'rw' => 'required|string|max:50',
             'alamat_ktp' => 'required|string',
             'alamat_sekarang' => 'required|string',
             'agama' => 'required|string|max:50',
@@ -41,8 +45,14 @@ class JenazahRequest extends FormRequest
             'pekerjaan' => 'required|string|max:50',
             'tanggal_meninggal' => 'required|date',
             'tanggal_makam' => 'required|date',
-            'id_pesanan' => 'required|integer|exists:pesanan,id|unique:jenazah',
-            'id_makam' => 'required|integer|exists:makam,id|unique:jenazah',
+            'id_pesanan' => [
+                'required',
+                Rule::unique(\App\Models\Jenazah::class, 'id_pesanan')->ignore($this->route('jenazah'), 'id')
+            ],
+            'id_makam' => [
+                'required',
+                Rule::unique(\App\Models\Jenazah::class, 'id_makam')->ignore($this->route('jenazah'), 'id')
+            ],
         ];
     }
 }

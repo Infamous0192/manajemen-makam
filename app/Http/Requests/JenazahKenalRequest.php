@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class JenazahKenalRequest extends FormRequest
 {
@@ -35,7 +36,10 @@ class JenazahKenalRequest extends FormRequest
             'kelurahan' => 'required|string|max:50',
             'rt' => 'required|integer',
             'rw' => 'required|integer',
-            'id_makam' => 'required|integer|exists:makam,id|unique:jenazah_kenal',
+            'id_makam' => [
+                'required',
+                Rule::unique(\App\Models\JenazahKenal::class, 'id_makam')->ignore($this->route('jenazah_kenal'), 'id')
+            ],
         ];
     }
 }

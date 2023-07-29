@@ -28,6 +28,8 @@ class JenazahKenalController extends Controller
     public function create()
     {
         $makam = Makam::leftJoin('jenazah_kenal', 'makam.id', '=', 'jenazah_kenal.id_makam')
+            ->leftJoin('jenazah', 'makam.id', '=', 'jenazah.id_makam')
+            ->whereNull('jenazah.id_makam')
             ->whereNull('jenazah_kenal.id_makam')
             ->select('makam.*')
             ->get()
@@ -59,6 +61,8 @@ class JenazahKenalController extends Controller
     public function show(JenazahKenal $jenazahKenal)
     {
         $makam = Makam::leftJoin('jenazah_kenal', 'makam.id', '=', 'jenazah_kenal.id_makam')
+            ->leftJoin('jenazah', 'makam.id', '=', 'jenazah.id_makam')
+            ->whereNull('jenazah.id_makam')
             ->whereNull('jenazah_kenal.id_makam')
             ->select('makam.*')
             ->get()
@@ -78,6 +82,8 @@ class JenazahKenalController extends Controller
     public function edit(JenazahKenal $jenazahKenal)
     {
         $makam = Makam::leftJoin('jenazah_kenal', 'makam.id', '=', 'jenazah_kenal.id_makam')
+            ->leftJoin('jenazah', 'makam.id', '=', 'jenazah.id_makam')
+            ->whereNull('jenazah.id_makam')
             ->whereNull('jenazah_kenal.id_makam')
             ->orWhere('jenazah_kenal.id', $jenazahKenal->id)
             ->select('makam.*')

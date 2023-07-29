@@ -28,7 +28,6 @@
                         placeholder="Masukan Tempat Ditemukan" />
                     <x-text-input type="date" name="tanggal_ditemukan" label="Tanggal Ditemukan"
                         placeholder="Masukan Tanggal Ditemukan" />
-                    <x-text-input name="nama" label="Nama" placeholder="Masukan Nama" />
                     <x-text-input name="provinsi" label="Provinsi" placeholder="Masukan Provinsi" />
                     <x-text-input name="kabupaten" label="Kabupaten" placeholder="Masukan Kabupaten" />
                     <x-text-input name="kecamatan" label="Kecamatan" placeholder="Masukan Kecamatan" />
