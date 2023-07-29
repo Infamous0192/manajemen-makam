@@ -18,7 +18,6 @@ class Tumpangan extends Model
         'kewarganegaraan',
         'agama',
         'alamat',
-        'tanggal_meninggal',
         'id_jenazah',
     ];
 

@@ -360,6 +360,11 @@ return [
                     'route'  => 'pembayaran.index',
                     'icon' => 'far fa-fw fa-circle',
                 ],
+                [
+                    'text' => 'Tumpangan',
+                    'route'  => 'tumpangan.index',
+                    'icon' => 'far fa-fw fa-circle',
+                ],
             ],
         ],
         [

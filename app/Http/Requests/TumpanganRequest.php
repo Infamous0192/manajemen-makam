@@ -30,7 +30,6 @@ class TumpanganRequest extends FormRequest
             'kewarganegaraan' => 'required|string|max:50',
             'agama' => 'required|string|max:50',
             'alamat' => 'required|string',
-            'tanggal_meninggal' => 'required|date',
             'id_jenazah' => 'required|integer|exists:jenazah,id',
         ];
     }

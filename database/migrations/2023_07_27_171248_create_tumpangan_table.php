@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('kewarganegaraan', 50);
             $table->string('agama', 50);
             $table->text('alamat');
-            $table->date('tanggal_meninggal');
             $table->integer('id_jenazah')->unsigned();
             $table->timestamps();
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tumpangan;
 use App\Http\Requests\TumpanganRequest;
+use App\Models\Jenazah;
 use Illuminate\Http\Request;
 
 class TumpanganController extends Controller
@@ -26,7 +27,11 @@ class TumpanganController extends Controller
      */
     public function create()
     {
-        return view('tumpangan.create');
+        $jenazah = Jenazah::all()->map(function ($item, $key) {
+            return ['label' => $item->nama . ' (' . $item->nik . ')', 'value' => $item->id];
+        });
+
+        return view('tumpangan.create', compact('jenazah'));
     }
 
     /**
@@ -49,7 +54,11 @@ class TumpanganController extends Controller
      */
     public function show(Tumpangan $tumpangan)
     {
-        return view('tumpangan.show', compact('tumpangan'));
+        $jenazah = Jenazah::all()->map(function ($item, $key) {
+            return ['label' => $item->nama . ' (' . $item->nik . ')', 'value' => $item->id];
+        });
+
+        return view('tumpangan.show', compact('tumpangan', 'jenazah'));
     }
 
     /**
@@ -60,7 +69,11 @@ class TumpanganController extends Controller
      */
     public function edit(Tumpangan $tumpangan)
     {
-        return view('tumpangan.edit', compact('tumpangan'));
+        $jenazah = Jenazah::all()->map(function ($item, $key) {
+            return ['label' => $item->nama . ' (' . $item->nik . ')', 'value' => $item->id];
+        });
+
+        return view('tumpangan.edit', compact('tumpangan', 'jenazah'));
     }
 
     /**
