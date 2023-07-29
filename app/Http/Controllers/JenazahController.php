@@ -6,6 +6,7 @@ use App\Models\Jenazah;
 use App\Http\Requests\JenazahRequest;
 use App\Models\Makam;
 use App\Models\Pesanan;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class JenazahController extends Controller
@@ -69,27 +70,9 @@ class JenazahController extends Controller
      */
     public function show(Jenazah $jenazah)
     {
-        $makam = Makam::select('makam.*')
-            ->leftJoin('jenazah_kenal', 'makam.id', '=', 'jenazah_kenal.id_makam')
-            ->leftJoin('jenazah', 'makam.id', '=', 'jenazah.id_makam')
-            ->whereNull('jenazah.id_makam')
-            ->whereNull('jenazah_kenal.id_makam')
-            ->orWhere('jenazah.id', $jenazah->id)
-            ->get()
-            ->map(function ($item, $key) {
-                return ['label' => $item->nama . ' (' . $item->tpu->nama . ')', 'value' => $item->id];
-            });
-
-        $pesanan = Pesanan::leftJoin('jenazah', 'pesanan.id', '=', 'jenazah.id_pesanan')
-            ->whereNull('jenazah.id_pesanan')
-            ->select('pesanan.*')
-            ->orWhere('jenazah.id', $jenazah->id)
-            ->get()
-            ->map(function ($item, $key) {
-                return ['label' => $item->nama, 'value' => $item->id];
-            });
-
-        return view('jenazah.show', compact('jenazah', 'makam', 'pesanan'));
+        $data = Pdf::loadview('jenazah/surat', ['jenazah' => $jenazah]);
+        //mendownload laporan.pdf
+        return $data->download('surat.pdf');
     }
 
     /**
@@ -146,5 +129,14 @@ class JenazahController extends Controller
     {
         $jenazah->delete();
         return redirect()->route('jenazah.index')->with('success', 'Jenazah deleted successfully.');
+    }
+
+    public function laporan()
+    {
+        $jenazah = Jenazah::all();
+
+        $data = PDF::loadview('jenazah/print', ['jenazah' => $jenazah])->setPaper('a4', 'landscape');
+
+        return $data->download('laporan.pdf');
     }
 }

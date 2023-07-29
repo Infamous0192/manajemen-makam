@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\JenazahKenal;
 use App\Http\Requests\JenazahKenalRequest;
 use App\Models\Makam;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class JenazahKenalController extends Controller
@@ -119,5 +120,14 @@ class JenazahKenalController extends Controller
     {
         $jenazahKenal->delete();
         return redirect()->route('jenazah-kenal.index')->with('success', 'Jenazah Kenal deleted successfully.');
+    }
+
+    public function laporan()
+    {
+        $jenazah = JenazahKenal::all();
+
+        $data = Pdf::loadview('jenazah-kenal/print', ['jenazah' => $jenazah])->setPaper('a4', 'landscape');
+
+        return $data->download('laporan.pdf');
     }
 }

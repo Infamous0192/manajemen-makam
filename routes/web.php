@@ -33,8 +33,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::resource('tpu', App\Http\Controllers\TpuController::class);
     Route::resource('makam', App\Http\Controllers\MakamController::class);
+    Route::get('jenazah-kenal/laporan', [App\Http\Controllers\JenazahKenalController::class, 'laporan'])->name('jenazah-kenal.laporan');
     Route::resource('jenazah-kenal', App\Http\Controllers\JenazahKenalController::class);
+    Route::get('jenazah/laporan', [App\Http\Controllers\JenazahController::class, 'laporan'])->name('jenazah.laporan');
     Route::resource('jenazah', App\Http\Controllers\JenazahController::class);
+    Route::get('pewaris/laporan', [App\Http\Controllers\PewarisController::class, 'laporan'])->name('pewaris.laporan');
     Route::resource('pewaris', App\Http\Controllers\PewarisController::class)->parameters([
         'pewaris' => 'pewaris',
     ]);

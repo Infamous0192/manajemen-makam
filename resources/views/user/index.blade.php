@@ -20,8 +20,8 @@
                     <table class="table table-bordered">
                         <tr>
                             <th>No.</th>
-                            <th>Nama Lengkap</th>
-                            <th>Email</th>
+                            <th>Nama</th>
+                            <th>Username</th>
                             <th>Aksi</th>
                         </tr>
                         @php
@@ -30,8 +30,8 @@
                         @foreach ($user as $u )
                             <tr>
                                 <td>{{  $no++ }}</td>
-                                <td>{{ $u->name}}</td>
-                                <td>{{ $u->email}}</td>
+                                <td>{{ $u->nama}}</td>
+                                <td>{{ $u->username}}</td>
                                 <td>
 
                                     <form action="{{ route('user.destroy', $u->id)}}" method="post">

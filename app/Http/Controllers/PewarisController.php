@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pewaris;
 use App\Http\Requests\PewarisRequest;
 use App\Models\Jenazah;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class PewarisController extends Controller
@@ -55,12 +56,9 @@ class PewarisController extends Controller
      */
     public function show(Pewaris $pewaris)
     {
-        $mendiang = Jenazah::all()
-            ->map(function ($item, $key) {
-                return ['label' => $item->nama . ' (' . $item->nik . ')', 'value' => $item->id];
-            });
-
-        return view('pewaris.show', compact('pewaris', 'mendiang'));
+        $data = Pdf::loadview('pewaris/surat', ['pewaris' => $pewaris]);
+        //mendownload laporan.pdf
+        return $data->download('surat.pdf');
     }
 
     /**
@@ -102,5 +100,14 @@ class PewarisController extends Controller
     {
         $pewaris->delete();
         return redirect()->route('pewaris.index')->with('success', 'Pewaris deleted successfully.');
+    }
+
+    public function laporan()
+    {
+        $pewaris = Pewaris::all();
+
+        $data = Pdf::loadview('pewaris/print', ['pewaris' => $pewaris])->setPaper('a4', 'landscape');
+
+        return $data->download('laporan.pdf');
     }
 }

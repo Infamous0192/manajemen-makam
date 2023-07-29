@@ -42,7 +42,7 @@
                                 <td>{{ $item->kewarganegaraan }}</td>
                                 <td>{{ $item->mendiang->nama }}</td>
                                 <td>
-                                    <x-action-button :id="$item->id" edit="pewaris.edit" delete="pewaris.destroy" />
+                                    <x-action-button :id="$item->id" edit="pewaris.edit" print="pewaris.show" delete="pewaris.destroy"></x-action-button>
                                 </td>
                             </tr>
                             @endforeach

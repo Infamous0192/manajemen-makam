@@ -42,9 +42,10 @@
                                 <td>{{ $item->kewarganegaraan }}</td>
                                 <td>{{ $item->makam->nama }}</td>
                                 <td>
-                                    <x-action-button :id="$item->id" edit="jenazah.edit" delete="jenazah.destroy">
-                                        <a
-                                            href="{{ route('pembayaran.create', ['id_jenazah' => $item->id]) }}" class="btn btn-sm btn-secondary">Bayar</a>
+                                    <x-action-button :id="$item->id" edit="jenazah.edit" print="jenazah.show"
+                                        delete="jenazah.destroy">
+                                        <a href="{{ route('pembayaran.create', ['id_jenazah' => $item->id]) }}"
+                                            class="btn btn-sm btn-secondary ml-2">Bayar</a>
                                     </x-action-button>
                                 </td>
                             </tr>

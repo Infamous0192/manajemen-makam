@@ -373,17 +373,17 @@ return [
             'submenu' => [
                 [
                     'text' => 'Laporan Jenazah Tidak Mampu',
-                    'route'  => 'laporan.mampu',
+                    'route'  => 'jenazah.laporan',
                     'icon_color' => 'yellow',
                 ],
                 [
                     'text' => 'Laporan Jenazah Tidak Dikenal',
-                    'route'  => 'laporan.kenal',
+                    'route'  => 'jenazah-kenal.laporan',
                     'icon_color' => 'cyan',
                 ],
                 [
                     'text' => 'Laporan Ahli Waris',
-                    'route'  => 'laporan.waris',
+                    'route'  => 'pewaris.laporan',
                     'icon_color' => 'red',
                 ],
 
