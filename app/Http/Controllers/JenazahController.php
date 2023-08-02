@@ -6,6 +6,7 @@ use App\Models\Jenazah;
 use App\Http\Requests\JenazahRequest;
 use App\Models\Makam;
 use App\Models\Pesanan;
+use App\Models\Tpu;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
@@ -29,15 +30,17 @@ class JenazahController extends Controller
      */
     public function create()
     {
+        $tpu = Tpu::all()->map(function ($item, $key) {
+            return ['label' => $item->nama, 'value' => $item->id];
+        });
+
+        $blok = Makam::select('id_tpu', 'nama')->groupBy('id_tpu', 'nama')->get();
         $makam = Makam::select('makam.*')
             ->leftJoin('jenazah_kenal', 'makam.id', '=', 'jenazah_kenal.id_makam')
             ->leftJoin('jenazah', 'makam.id', '=', 'jenazah.id_makam')
             ->whereNull('jenazah.id_makam')
             ->whereNull('jenazah_kenal.id_makam')
-            ->get()
-            ->map(function ($item, $key) {
-                return ['label' => $item->nama . ' (' . $item->tpu->nama . ')', 'value' => $item->id];
-            });
+            ->get();
 
         $pesanan = Pesanan::leftJoin('jenazah', 'pesanan.id', '=', 'jenazah.id_pesanan')
             ->whereNull('jenazah.id_pesanan')
@@ -47,7 +50,7 @@ class JenazahController extends Controller
                 return ['label' => $item->nama, 'value' => $item->id];
             });
 
-        return view('jenazah.create', compact('makam', 'pesanan'));
+        return view('jenazah.create', compact('makam', 'blok', 'tpu', 'pesanan'));
     }
 
     /**
@@ -87,16 +90,18 @@ class JenazahController extends Controller
      */
     public function edit(Jenazah $jenazah)
     {
+        $tpu = Tpu::all()->map(function ($item, $key) {
+            return ['label' => $item->nama, 'value' => $item->id];
+        });
+
+        $blok = Makam::select('id_tpu', 'nama')->groupBy('id_tpu', 'nama')->get();
         $makam = Makam::select('makam.*')
             ->leftJoin('jenazah_kenal', 'makam.id', '=', 'jenazah_kenal.id_makam')
             ->leftJoin('jenazah', 'makam.id', '=', 'jenazah.id_makam')
             ->whereNull('jenazah.id_makam')
             ->whereNull('jenazah_kenal.id_makam')
             ->orWhere('jenazah.id', $jenazah->id)
-            ->get()
-            ->map(function ($item, $key) {
-                return ['label' => $item->nama . ' (' . $item->tpu->nama . ')', 'value' => $item->id];
-            });
+            ->get();
 
         $pesanan = Pesanan::leftJoin('jenazah', 'pesanan.id', '=', 'jenazah.id_pesanan')
             ->whereNull('jenazah.id_pesanan')
@@ -107,7 +112,7 @@ class JenazahController extends Controller
                 return ['label' => $item->nama, 'value' => $item->id];
             });
 
-        return view('jenazah.edit', compact('jenazah', 'makam', 'pesanan'));
+        return view('jenazah.edit', compact('jenazah', 'blok', 'tpu', 'makam', 'pesanan'));
     }
 
     /**
