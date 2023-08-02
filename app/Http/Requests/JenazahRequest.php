@@ -25,7 +25,6 @@ class JenazahRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama' => 'required|string|max:50',
             'nik' => 'required|string|size:16',
             'tempat_lahir' => 'required|string|max:50',
             'tanggal_lahir' => 'required|date',

@@ -30,7 +30,6 @@
                     <x-select name="id_pesanan" :value="$jenazah->id_pesanan" label="Pemesan"
                         placeholder="Pilih Pemesan" :data="$pesanan" />
 
-                    <x-text-input name="nama" label="Nama" :value="$jenazah->nama" placeholder="Masukan Nama" />
                     <x-text-input name="nik" label="NIK" :value="$jenazah->nik" placeholder="Masukan Nik" />
                     <x-text-input name="tempat_lahir" :value="$jenazah->tempat_lahir" label="Tempat Lahir"
                         placeholder="Masukan Tempat Lahir" />

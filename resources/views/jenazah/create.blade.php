@@ -28,7 +28,6 @@
                 <div class="card-body">
                     <x-select name="id_pesanan" label="Pemesan" placeholder="Pilih Pemesan" :data="$pesanan" />
 
-                    <x-text-input name="nama" label="Nama" placeholder="Masukan Nama" />
                     <x-text-input name="nik" label="NIK" placeholder="Masukan Nik" />
                     <x-text-input name="tempat_lahir" label="Tempat Lahir" placeholder="Masukan Tempat Lahir" />
                     <x-text-input type="date" name="tanggal_lahir" label="Tanggal Lahir"

@@ -58,7 +58,11 @@ class JenazahController extends Controller
      */
     public function store(JenazahRequest $request)
     {
-        Jenazah::create($request->validated());
+        $data = $request->validated();
+        $pesanan = Pesanan::find($request->get('id_pesanan'));
+        $data['nama'] = $pesanan->nama;
+
+        Jenazah::create($data);
         return redirect()->route('jenazah.index')->with('success', 'Jenazah created successfully.');
     }
 
@@ -115,7 +119,11 @@ class JenazahController extends Controller
      */
     public function update(JenazahRequest $request, Jenazah $jenazah)
     {
-        $jenazah->update($request->validated());
+        $data = $request->validated();
+        $pesanan = Pesanan::find($request->get('id_pesanan'));
+        $data['nama'] = $pesanan->nama;
+
+        $jenazah->update($data);
         return redirect()->route('jenazah.index')->with('success', 'Jenazah updated successfully.');
     }
 
