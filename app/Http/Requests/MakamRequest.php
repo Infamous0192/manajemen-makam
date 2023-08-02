@@ -25,8 +25,8 @@ class MakamRequest extends FormRequest
     {
         return [
             'nama' => 'required|string|max:50',
-            'baris' => 'required|integer',
-            'kolom' => 'required|integer',
+            'baris' => 'required|integer|max:6|min:1',
+            'kolom' => 'required|integer|max:6|min:1',
             'id_tpu' => 'required|integer|exists:tpu,id',
         ];
     }

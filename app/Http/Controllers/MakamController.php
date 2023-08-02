@@ -6,6 +6,7 @@ use App\Models\Makam;
 use App\Http\Requests\MakamRequest;
 use App\Models\Tpu;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class MakamController extends Controller
 {
@@ -42,6 +43,14 @@ class MakamController extends Controller
      */
     public function store(MakamRequest $request)
     {
+        if (!Makam::isAvailable($request)) {
+            throw ValidationException::withMessages([
+                'baris' => 'Blok tidak tersedia',
+                'kolom' => 'Blok tidak tersedia',
+                'nama'  => 'Blok tidak tersedia',
+            ]);
+        }
+
         Makam::create($request->validated());
         return redirect()->route('makam.index')->with('success', 'Makam created successfully.');
     }
@@ -85,6 +94,14 @@ class MakamController extends Controller
      */
     public function update(MakamRequest $request, Makam $makam)
     {
+        if (!Makam::isAvailable($request, $makam->id)) {
+            throw ValidationException::withMessages([
+                'baris' => 'Blok tidak tersedia',
+                'kolom' => 'Blok tidak tersedia',
+                'nama'  => 'Blok tidak tersedia',
+            ]);
+        }
+
         $makam->update($request->validated());
         return redirect()->route('makam.index')->with('success', 'Makam updated successfully.');
     }
