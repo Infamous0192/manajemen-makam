@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tumpangan;
 use App\Http\Requests\TumpanganRequest;
 use App\Models\Jenazah;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class TumpanganController extends Controller
@@ -54,11 +55,9 @@ class TumpanganController extends Controller
      */
     public function show(Tumpangan $tumpangan)
     {
-        $jenazah = Jenazah::all()->map(function ($item, $key) {
-            return ['label' => $item->nama . ' (' . $item->nik . ')', 'value' => $item->id];
-        });
-
-        return view('tumpangan.show', compact('tumpangan', 'jenazah'));
+        $data = Pdf::loadview('tumpangan/surat', ['tumpangan' => $tumpangan]);
+        //mendownload laporan.pdf
+        return $data->download('surat.pdf');
     }
 
     /**

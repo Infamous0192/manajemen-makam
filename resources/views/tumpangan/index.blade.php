@@ -34,7 +34,7 @@
                                 <td>{{ $item->alamat }}</td>
                                 <td>{{ $item->jenazah->nama }}</td>
                                 <td>
-                                    <x-action-button :id="$item->id" edit="tumpangan.edit" delete="tumpangan.destroy" />
+                                    <x-action-button :id="$item->id" edit="tumpangan.edit" print="tumpangan.show" delete="tumpangan.destroy" />
                                 </td>
                             </tr>
                             @endforeach
