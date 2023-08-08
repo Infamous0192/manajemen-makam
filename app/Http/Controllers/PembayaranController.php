@@ -46,7 +46,7 @@ class PembayaranController extends Controller
         $data['id_makam'] = Jenazah::find($request->get('id_jenazah'))->id_makam;
 
         Pembayaran::create($data);
-        return redirect()->route('pembayaran.index')->with('success', 'Pembayaran created successfully.');
+        return redirect()->route('keuangan.index')->with('success', 'Pembayaran created successfully.');
     }
 
     /**
@@ -92,7 +92,7 @@ class PembayaranController extends Controller
         $data['id_makam'] = Jenazah::find($request->get('id_jenazah'))->id_makam;
 
         $pembayaran->update($data);
-        return redirect()->route('pembayaran.index')->with('success', 'Pembayaran updated successfully.');
+        return redirect()->route('keuangan.index')->with('success', 'Pembayaran updated successfully.');
     }
 
     /**
@@ -104,6 +104,6 @@ class PembayaranController extends Controller
     public function destroy(Pembayaran $pembayaran)
     {
         $pembayaran->delete();
-        return redirect()->route('pembayaran.index')->with('success', 'Pembayaran deleted successfully.');
+        return redirect()->route('keuangan.index')->with('success', 'Pembayaran deleted successfully.');
     }
 }

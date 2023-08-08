@@ -9,15 +9,6 @@
 @section('content')
 <div class="row">
     <div class="col-12">
-        @if (count($errors) > 0)
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif
         <div class="card">
 
             <div class="card-header">
@@ -38,7 +29,7 @@
 
                 <div class="card-footer text-center">
                     <button class="btn btn-info">Simpan</button>
-                    <a href="{{ route('pembayaran.index') }}" class="btn btn-danger">Batal</a>
+                    <a href="{{ route('keuangan.index') }}" class="btn btn-danger">Batal</a>
                 </div>
             </form>
         </div>

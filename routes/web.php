@@ -47,6 +47,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('pesanan', App\Http\Controllers\PesananController::class);
     Route::resource('tumpangan', App\Http\Controllers\TumpanganController::class);
     Route::resource('pembayaran', App\Http\Controllers\PembayaranController::class);
+    Route::resource('pengeluaran', App\Http\Controllers\PengeluaranController::class);
 
     Route::get('get-mampu', [App\Http\Controllers\MampuController::class, 'getMampu'])->name('get.mampu');
     Route::get('/laporan/mampu', [App\Http\Controllers\LaporanController::class, 'mampu'])->name('laporan.mampu');
