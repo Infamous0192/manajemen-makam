@@ -30,6 +30,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::resource('user', App\Http\Controllers\UserController::class);
     Route::resource('mampu', App\Http\Controllers\MampuController::class);
+    Route::resource('pekerja', App\Http\Controllers\PekerjaController::class);
+
+    Route::get('keuangan', [App\Http\Controllers\KeuanganController::class, 'index'])->name('keuangan.index');
 
     Route::resource('tpu', App\Http\Controllers\TpuController::class);
     Route::resource('makam', App\Http\Controllers\MakamController::class);

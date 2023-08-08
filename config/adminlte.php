@@ -356,8 +356,13 @@ return [
                     'icon' => 'far fa-fw fa-circle',
                 ],
                 [
-                    'text' => 'Kas',
-                    'route'  => 'pembayaran.index',
+                    'text' => 'Pekerja',
+                    'route'  => 'pekerja.index',
+                    'icon' => 'far fa-fw fa-circle',
+                ],
+                [
+                    'text' => 'Keuangan',
+                    'route'  => 'keuangan.index',
                     'icon' => 'far fa-fw fa-circle',
                 ],
                 [
