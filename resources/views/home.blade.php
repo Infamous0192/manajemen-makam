@@ -16,7 +16,7 @@
 
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>{{ $mampu }}</h3>
+                                <h3>{{ $jenazah }}</h3>
                                 <p>Jenazah Tidak Mampu</p>
                             </div>
                             <div class="icon">
@@ -42,7 +42,7 @@
 
                         <div class="small-box bg-warning">
                             <div class="inner">
-                                <h3>{{ $waris }}</h3>
+                                <h3>{{ $pewaris }}</h3>
                                 <p>Ahli Waris</p>
                             </div>
                             <div class="icon">

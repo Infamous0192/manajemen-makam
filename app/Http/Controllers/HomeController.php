@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jenazah;
+use App\Models\JenazahKenal;
 use App\Models\Kenal;
 use App\Models\Mampu;
+use App\Models\Pewaris;
 use App\Models\Waris;
 use Illuminate\Http\Request;
 
@@ -26,14 +29,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $kenal = 12;
-        $mampu = 50;
-        $waris = 12;
+        $jenazah = Jenazah::count();
+        $kenal = JenazahKenal::count();
+        $pewaris = Pewaris::count();
 
         return view('home', [
             'kenal' => $kenal,
-            'mampu' => $mampu,
-            'waris' => $waris,
+            'jenazah' => $jenazah,
+            'pewaris' => $pewaris,
         ]);
     }
 }
