@@ -9,7 +9,7 @@
 @section('content')
 <div class="row">
     <div class="col-12">
-        <div class="card">
+        <div class="card mb-4">
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-3 col-6">
@@ -44,6 +44,51 @@
                             <div class="inner">
                                 <h3>{{ $pewaris }}</h3>
                                 <p>Ahli Waris</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-person-add"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-3 col-6">
+
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3>{{ $makam_total }}</h3>
+                                <p>Makam Total</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-bag"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-6">
+
+                        <div class="small-box bg-success">
+                            <div class="inner">
+                                <h3>{{ $makam_terpakai }}</h3>
+                                <p>Makam Tersedia</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-stats-bars"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-6">
+
+                        <div class="small-box bg-warning">
+                            <div class="inner">
+                                <h3>{{ $makam_tersedia }}</h3>
+                                <p>Makam Digunakan</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-person-add"></i>

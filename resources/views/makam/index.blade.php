@@ -52,7 +52,40 @@
 @push('js')
 <script type="text/javascript">
     $(document).ready(function(){
-        $("#table1").DataTable();
+        $("#table1").DataTable({
+                dom: "Bfrtip",
+                buttons: [{
+                        extend: "pdf",
+                        orientation: 'landscape',
+                        title: "Data Blok Makam",
+                        download: "open",
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4],
+                            modifier: {
+                                selected: null,
+                            },
+                        },
+                        className: "btn btn-primary",
+                        customize: function(doc) {
+                            doc.content[1].table.widths =
+                                Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                        }
+                    },
+                    {
+                        extend: "print",
+                        title: "Data Blok Makam",
+                        orientation: "potrait",
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4],
+                            modifier: {
+                                selected: null,
+                            },
+                        },
+                        pageSize: "Legal",
+                        className: "btn btn-primary",
+                    },
+                ]
+            });
     });
 </script>
 @endpush

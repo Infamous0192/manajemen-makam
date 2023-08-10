@@ -38,7 +38,7 @@
                                 <td>{{ $item->tempat_ditemukan }}</td>
                                 <td>{{ $item->tanggal_ditemukan }}</td>
                                 <td>{{ $item->kewarganegaraan }}</td>
-                                <td>{{ $item->makam->nama }}</td>
+                                <td>{{ $item->makam->nama }}-{{ $item->makam->baris }}{{ $item->makam->kolom }}</td>
                                 <td>
                                     <x-action-button :id="$item->id" edit="jenazah-kenal.edit"
                                         delete="jenazah-kenal.destroy" />

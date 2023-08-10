@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\JenazahKenal;
 use App\Http\Requests\JenazahKenalRequest;
 use App\Models\Makam;
+use App\Models\Tpu;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
@@ -28,17 +29,19 @@ class JenazahKenalController extends Controller
      */
     public function create()
     {
-        $makam = Makam::leftJoin('jenazah_kenal', 'makam.id', '=', 'jenazah_kenal.id_makam')
+        $tpu = Tpu::all()->map(function ($item, $key) {
+            return ['label' => $item->nama, 'value' => $item->id];
+        });
+
+        $blok = Makam::select('id_tpu', 'nama')->groupBy('id_tpu', 'nama')->get();
+        $makam = Makam::select('makam.*')
+            ->leftJoin('jenazah_kenal', 'makam.id', '=', 'jenazah_kenal.id_makam')
             ->leftJoin('jenazah', 'makam.id', '=', 'jenazah.id_makam')
             ->whereNull('jenazah.id_makam')
             ->whereNull('jenazah_kenal.id_makam')
-            ->select('makam.*')
-            ->get()
-            ->map(function ($item, $key) {
-                return ['label' => $item->nama . ' (' . $item->tpu->nama . ')', 'value' => $item->id];
-            });
+            ->get();
 
-        return view('jenazah-kenal.create', compact('makam'));
+        return view('jenazah-kenal.create', compact('makam', 'tpu', 'blok', 'makam'));
     }
 
     /**
@@ -82,19 +85,20 @@ class JenazahKenalController extends Controller
      */
     public function edit(JenazahKenal $jenazahKenal)
     {
-        $makam = Makam::leftJoin('jenazah_kenal', 'makam.id', '=', 'jenazah_kenal.id_makam')
+        $tpu = Tpu::all()->map(function ($item, $key) {
+            return ['label' => $item->nama, 'value' => $item->id];
+        });
+
+        $blok = Makam::select('id_tpu', 'nama')->groupBy('id_tpu', 'nama')->get();
+        $makam = Makam::select('makam.*')
+            ->leftJoin('jenazah_kenal', 'makam.id', '=', 'jenazah_kenal.id_makam')
             ->leftJoin('jenazah', 'makam.id', '=', 'jenazah.id_makam')
             ->whereNull('jenazah.id_makam')
             ->whereNull('jenazah_kenal.id_makam')
             ->orWhere('jenazah_kenal.id', $jenazahKenal->id)
-            ->select('makam.*')
-            ->get()
-            ->map(function ($item, $key) {
-                return ['label' => $item->nama . ' (' . $item->tpu->nama . ')', 'value' => $item->id];
-            });
+            ->get();
 
-
-        return view('jenazah-kenal.edit', compact('jenazahKenal', 'makam'));
+        return view('jenazah-kenal.edit', compact('jenazahKenal', 'makam', 'tpu', 'blok'));
     }
 
     /**

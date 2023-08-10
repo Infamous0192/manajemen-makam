@@ -456,11 +456,11 @@ return [
                     'asset' => false,
                     'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
                 ],
-                [
-                    'type' => 'css',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css',
-                ],
+                // [
+                //     'type' => 'css',
+                //     'asset' => false,
+                //     'location' => '//cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css',
+                // ],
                 [
                     'type' => 'js',
                     'asset' => false,
