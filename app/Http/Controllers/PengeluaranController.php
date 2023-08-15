@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pengeluaran;
 use App\Http\Requests\PengeluaranRequest;
 use App\Models\Jenazah;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class PengeluaranController extends Controller
@@ -87,5 +88,14 @@ class PengeluaranController extends Controller
     {
         $pengeluaran->delete();
         return redirect()->route('keuangan.index')->with('success', 'Pengeluaran deleted successfully.');
+    }
+
+    public function print()
+    {
+        $pengeluaran = Pengeluaran::all();
+
+        $data = Pdf::loadview('pengeluaran/print', ['pengeluaran' => $pengeluaran])->setPaper('a4', 'landscape');
+
+        return $data->download('laporan.pdf');
     }
 }

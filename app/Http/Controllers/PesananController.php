@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pesanan;
 use App\Http\Requests\PesananRequest;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class PesananController extends Controller
@@ -86,5 +87,14 @@ class PesananController extends Controller
     {
         $pesanan->delete();
         return redirect()->route('pesanan.index')->with('success', 'Pesanan deleted successfully.');
+    }
+
+    public function print()
+    {
+        $pesanan = Pesanan::all();
+
+        $data = Pdf::loadview('pesanan/print', ['pesanan' => $pesanan])->setPaper('a4', 'landscape');
+
+        return $data->download('laporan.pdf');
     }
 }

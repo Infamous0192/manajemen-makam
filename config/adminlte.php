@@ -300,12 +300,6 @@ return [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
         ],
-
-        // Sidebar items:
-        // [
-        //     'type' => 'sidebar-menu-search',
-        //     'text' => 'search',
-        // ],
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
@@ -334,6 +328,7 @@ return [
                     'text' => 'Jenazah Tidak Dikenal',
                     'route'  => 'jenazah-kenal.index',
                     'icon' => 'far fa-fw fa-circle',
+                    'roles' => ['admin'],
                 ],
                 [
                     'text' => 'Ahli Waris',
@@ -344,11 +339,13 @@ return [
                     'text' => 'TPU',
                     'route'  => 'tpu.index',
                     'icon' => 'far fa-fw fa-circle',
+                    'roles' => ['admin'],
                 ],
                 [
                     'text' => 'Blok Makam',
                     'route'  => 'makam.index',
                     'icon' => 'far fa-fw fa-circle',
+                    'roles' => ['admin'],
                 ],
                 [
                     'text' => 'Pemesanan',
@@ -359,11 +356,13 @@ return [
                     'text' => 'Pekerja',
                     'route'  => 'pekerja.index',
                     'icon' => 'far fa-fw fa-circle',
+                    'roles' => ['admin'],
                 ],
                 [
                     'text' => 'Keuangan',
                     'route'  => 'keuangan.index',
                     'icon' => 'far fa-fw fa-circle',
+                    'roles' => ['admin'],
                 ],
                 [
                     'text' => 'Tumpangan',
@@ -375,6 +374,7 @@ return [
         [
             'text'    => 'LAPORAN',
             'icon'        => 'fas fa-fw fa-users',
+            'roles' => ['admin'],
             'submenu' => [
                 [
                     'text' => 'Laporan Jenazah Tidak Mampu',
@@ -400,6 +400,7 @@ return [
             'route'         => 'user.index',
             'icon'        => 'fas fa-fw fa-users',
             'icon_color' => 'cyan',
+            'roles' => ['admin'],
         ],
     ],
 
@@ -423,6 +424,7 @@ return [
         JeroenNoten\LaravelAdminLte\Menu\Filters\ClassesFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\LangFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\DataFilter::class,
+        App\Filters\RoleMenuFilter::class,
     ],
 
     /*

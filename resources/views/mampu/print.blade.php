@@ -39,7 +39,7 @@ $now = $arr[2] . ' ' . $bulan[(int) $arr[1]] . ' ' . $arr[0];
 
   <div class="text-center mb-3">
     <h5>Data Jenazah Tidak Mampu</h5>
-    <strong<strong>{{ $now }}</strong>
+    <strong>{{ $now }}</strong>
   </div>
 
   <table class='table table-bordered'>
@@ -70,15 +70,6 @@ $now = $arr[2] . ' ' . $bulan[(int) $arr[1]] . ' ' . $arr[0];
       @endforeach
     </tbody>
   </table>
-
-  <div class="float-right">
-    <div>Kepala Dinas Lingkungan Hidup</div>
-    <br>
-    <br>
-    <br>
-    <div>Alive Yoesfah love</div>
-    <div>NIP. 196811071989031009</div>
-  </div>
 </body>
 
 </html>

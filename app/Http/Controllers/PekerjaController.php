@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pekerja;
 use App\Http\Requests\PekerjaRequest;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class PekerjaController extends Controller
@@ -86,5 +87,14 @@ class PekerjaController extends Controller
     {
         $pekerja->delete();
         return redirect()->route('pekerja.index')->with('success', 'Pekerja deleted successfully.');
+    }
+
+    public function print()
+    {
+        $pekerja = Pekerja::all();
+
+        $data = Pdf::loadview('pekerja/print', ['pekerja' => $pekerja])->setPaper('a4', 'landscape');
+
+        return $data->download('laporan.pdf');
     }
 }

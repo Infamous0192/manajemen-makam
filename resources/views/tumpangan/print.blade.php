@@ -23,7 +23,7 @@ $now = $arr[2] . ' ' . $bulan[(int) $arr[1]] . ' ' . $arr[0];
 <html>
 
 <head>
-  <title>Data Waris</title>
+  <title>Data Tumpangan</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -45,51 +45,35 @@ $now = $arr[2] . ' ' . $bulan[(int) $arr[1]] . ' ' . $arr[0];
     </tr>
   </table>
 
-  <div class="text-center">
-    <h5>Data Waris</h5>
+  <div class="text-center mb-3">
+    <h5>Data Tumpangan</h5>
     <strong>{{ $now }}</strong>
   </div>
 
   <table class='table table-bordered'>
     <thead>
       <tr>
-        <th>ID</th>
-        <th>Nama Mendiang</th>
-        <th>Hubungan Mendiang</th>
-        <th>Nama Waris</th>
-        <th>NIK Waris</th>
-        <th>Tanggal Lahir</th>
-        <th>Jenis Kelamin</th>
-        <th>Pekerjaan</th>
-        <th>Agama</th>
+        <th>#</th>
+        <th>Nama Pemohon</th>
+        <th>Alamat</th>
+        <th>Identitas Jenazah</th>
+        <th>Aksi</th>
       </tr>
     </thead>
     <tbody>
-
-      @foreach($pewaris as $row)
+      @foreach ($tumpangan as $item)
       <tr>
-        <td>{{ $loop->index + 1 }}</td>
-        <td>{{ $row->mendiang->nama }}</td>
-        <td>{{ $row->status_waris }}</td>
-        <td>{{ $row->nama }}</td>
-        <td>{{ $row->nik }}</td>
-        <td>{{ $row->tanggal_lahir }}</td>
-        <td>{{ $row->jenis_kelamin }}</td>
-        <td>{{ $row->pekerjaan }}</td>
-        <td>{{ $row->agama }}</td>
+        <td>{{ ($loop->index + 1) }}</td>
+        <td>{{ $item->nama_pemohon }}</td>
+        <td>{{ $item->alamat }}</td>
+        <td>{{ $item->jenazah->nama }}</td>
+        <td>
+          <x-action-button :id="$item->id" edit="tumpangan.edit" print="tumpangan.show" delete="tumpangan.destroy" />
+        </td>
       </tr>
       @endforeach
     </tbody>
   </table>
-
-  <div class="float-right">
-    <div>Kepala Dinas Lingkungan Hidup</div>
-    <br>
-    <br>
-    <br>
-    <div>Alive Yoesfah love</div>
-    <div>NIP. 196811071989031009</div>
-  </div>
 </body>
 
 </html>

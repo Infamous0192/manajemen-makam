@@ -22,7 +22,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Auth::routes();
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/profile', function () {
         return view('profile');
@@ -34,29 +34,38 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::get('keuangan', [App\Http\Controllers\KeuanganController::class, 'index'])->name('keuangan.index');
 
+    Route::get('tpu/print', [App\Http\Controllers\TpuController::class, 'print'])->name('tpu.print');
     Route::resource('tpu', App\Http\Controllers\TpuController::class);
+
+    Route::get('makam/print', [App\Http\Controllers\MakamController::class, 'print'])->name('makam.print');
     Route::resource('makam', App\Http\Controllers\MakamController::class);
-    Route::get('jenazah-kenal/laporan', [App\Http\Controllers\JenazahKenalController::class, 'laporan'])->name('jenazah-kenal.laporan');
+
     Route::resource('jenazah-kenal', App\Http\Controllers\JenazahKenalController::class);
-    Route::get('jenazah/laporan', [App\Http\Controllers\JenazahController::class, 'laporan'])->name('jenazah.laporan');
+    Route::get('jenazah-kenal/laporan', [App\Http\Controllers\JenazahKenalController::class, 'laporan'])->name('jenazah-kenal.laporan');
+
     Route::resource('jenazah', App\Http\Controllers\JenazahController::class);
-    Route::get('pewaris/laporan', [App\Http\Controllers\PewarisController::class, 'laporan'])->name('pewaris.laporan');
+    Route::get('jenazah/laporan', [App\Http\Controllers\JenazahController::class, 'laporan'])->name('jenazah.laporan');
+
+
     Route::resource('pewaris', App\Http\Controllers\PewarisController::class)->parameters([
         'pewaris' => 'pewaris',
     ]);
+    Route::get('pewaris/laporan', [App\Http\Controllers\PewarisController::class, 'laporan'])->name('pewaris.laporan');
+
+    Route::get('pesanan/print', [App\Http\Controllers\PesananController::class, 'print'])->name('pesanan.print');
     Route::resource('pesanan', App\Http\Controllers\PesananController::class);
+
+    Route::get('tumpangan/print', [App\Http\Controllers\TumpanganController::class, 'print'])->name('tumpangan.print');
     Route::resource('tumpangan', App\Http\Controllers\TumpanganController::class);
+
+    Route::get('pembayaran/print', [App\Http\Controllers\PembayaranController::class, 'print'])->name('pembayaran.print');
     Route::resource('pembayaran', App\Http\Controllers\PembayaranController::class);
+
+    Route::get('pengeluaran/print', [App\Http\Controllers\PengeluaranController::class, 'print'])->name('pengeluaran.print');
     Route::resource('pengeluaran', App\Http\Controllers\PengeluaranController::class);
 
     Route::get('get-mampu', [App\Http\Controllers\MampuController::class, 'getMampu'])->name('get.mampu');
     Route::get('/laporan/mampu', [App\Http\Controllers\LaporanController::class, 'mampu'])->name('laporan.mampu');
     Route::get('/laporan/waris', [App\Http\Controllers\LaporanController::class, 'waris'])->name('laporan.waris');
     Route::get('/laporan/kenal', [App\Http\Controllers\LaporanController::class, 'kenal'])->name('laporan.kenal');
-
-    Route::resource('kenal', App\Http\Controllers\KenalController::class);
-    Route::get('get-kenal', [App\Http\Controllers\KenalController::class, 'getkenal'])->name('get.kenal');
-
-    Route::resource('waris', App\Http\Controllers\WarisController::class);
-    Route::get('get-waris', [App\Http\Controllers\WarisController::class, 'getWaris'])->name('get.waris');
 });

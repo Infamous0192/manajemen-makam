@@ -36,10 +36,18 @@ $now = $arr[2] . ' ' . $bulan[(int) $arr[1]] . ' ' . $arr[0];
 </head>
 
 <body>
+  <table>
+    <tr>
+      <td><img src="{{ public_path('logo.jpg') }}" alt="" width="100"></td>
+      <td>
+        <h3 class="font-weight-bold text-center">Pemerintah Kota Banjarmasin Dinas Lingkungan Hidup</h3>
+      </td>
+    </tr>
+  </table>
 
   <div class="text-center mb-3">
     <h5>Data Jenazah Tidak Dikenal</h5>
-    <strong<strong>{{ $now }}</strong>
+    <strong>{{ $now }}</strong>
   </div>
 
   <table class='table table-bordered'>

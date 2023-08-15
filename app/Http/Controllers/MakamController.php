@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Makam;
 use App\Http\Requests\MakamRequest;
 use App\Models\Tpu;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
@@ -116,5 +117,14 @@ class MakamController extends Controller
     {
         $makam->delete();
         return redirect()->route('makam.index')->with('success', 'Makam deleted successfully.');
+    }
+
+    public function print()
+    {
+        $makam = Makam::all();
+
+        $data = Pdf::loadview('makam/print', ['makam' => $makam])->setPaper('a4', 'landscape');
+
+        return $data->download('laporan.pdf');
     }
 }

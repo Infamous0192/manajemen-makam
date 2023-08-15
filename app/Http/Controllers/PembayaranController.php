@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pembayaran;
 use App\Http\Requests\PembayaranRequest;
 use App\Models\Jenazah;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class PembayaranController extends Controller
@@ -105,5 +106,14 @@ class PembayaranController extends Controller
     {
         $pembayaran->delete();
         return redirect()->route('keuangan.index')->with('success', 'Pembayaran deleted successfully.');
+    }
+
+    public function print()
+    {
+        $pembayaran = Pembayaran::all();
+
+        $data = Pdf::loadview('pembayaran/print', ['pembayaran' => $pembayaran])->setPaper('a4', 'landscape');
+
+        return $data->download('laporan.pdf');
     }
 }

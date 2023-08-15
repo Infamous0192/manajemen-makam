@@ -99,4 +99,13 @@ class TumpanganController extends Controller
         $tumpangan->delete();
         return redirect()->route('tumpangan.index')->with('success', 'Tumpangan deleted successfully.');
     }
+
+    public function print()
+    {
+        $tumpangan = Tumpangan::all();
+
+        $data = Pdf::loadview('tumpangan/print', ['tumpangan' => $tumpangan])->setPaper('a4', 'landscape');
+
+        return $data->download('laporan.pdf');
+    }
 }

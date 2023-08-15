@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tpu;
 use App\Http\Requests\TpuRequest;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class TpuController extends Controller
@@ -86,5 +87,14 @@ class TpuController extends Controller
     {
         $tpu->delete();
         return redirect()->route('tpu.index')->with('success', 'Tpu deleted successfully.');
+    }
+
+    public function print()
+    {
+        $tpu = Tpu::all();
+
+        $data = Pdf::loadview('tpu/print', ['tpu' => $tpu])->setPaper('a4', 'landscape');
+
+        return $data->download('laporan.pdf');
     }
 }

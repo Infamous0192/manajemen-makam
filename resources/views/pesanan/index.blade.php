@@ -13,6 +13,7 @@
             <div class="card-header d-flex align-items-center">
                 <h3 class="card-title mr-4">Data Pesanan</h3>
                 <a href="{{ route('pesanan.create') }}" class="btn btn-success btn-sm px-4">Tambah</a>
+                <a href="{{ route('pesanan.print') }}" class="btn btn-info btn-sm px-4 ml-2">Print</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
