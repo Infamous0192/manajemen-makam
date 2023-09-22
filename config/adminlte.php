@@ -371,6 +371,12 @@ return [
                     'roles' => ['admin'],
                 ],
                 [
+                    'text' => 'Pemeliharaan',
+                    'route'  => 'pemeliharaan.index',
+                    'icon' => 'far fa-fw fa-circle',
+                    'roles' => ['admin'],
+                ],
+                [
                     'text' => 'Tumpangan',
                     'route'  => 'tumpangan.index',
                     'icon' => 'far fa-fw fa-circle',

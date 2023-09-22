@@ -31,7 +31,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('user', App\Http\Controllers\UserController::class);
     Route::resource('mampu', App\Http\Controllers\MampuController::class);
 
-    Route::get('tpu/print', [App\Http\Controllers\PekerjaController::class, 'print'])->name('tpu.print');
+    Route::get('pekerja/print', [App\Http\Controllers\PekerjaController::class, 'print'])->name('pekerja.print');
     Route::resource('pekerja', App\Http\Controllers\PekerjaController::class);
 
     Route::get('keuangan', [App\Http\Controllers\KeuanganController::class, 'index'])->name('keuangan.index');
@@ -71,8 +71,6 @@ Route::group(['middleware' => ['auth']], function () {
         'fasilitas' => 'fasilitas',
     ]);
 
-    Route::get('get-mampu', [App\Http\Controllers\MampuController::class, 'getMampu'])->name('get.mampu');
-    Route::get('/laporan/mampu', [App\Http\Controllers\LaporanController::class, 'mampu'])->name('laporan.mampu');
-    Route::get('/laporan/waris', [App\Http\Controllers\LaporanController::class, 'waris'])->name('laporan.waris');
-    Route::get('/laporan/kenal', [App\Http\Controllers\LaporanController::class, 'kenal'])->name('laporan.kenal');
+    Route::get('pemeliharaan/print', [App\Http\Controllers\PemeliharaanController::class, 'print'])->name('pemeliharaan.print');
+    Route::resource('pemeliharaan', App\Http\Controllers\PemeliharaanController::class);
 });
