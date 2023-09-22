@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('nama', 50);
             $table->enum('jenis', ['baru', 'perpanjangan']);
             $table->integer('jumlah');
+            $table->boolean('domisili');
+            $table->boolean('jasa_gali');
+            $table->boolean('jasa_rawat');
             $table->integer('id_jenazah')->unsigned();
             $table->integer('id_makam')->unsigned();
             $table->timestamps();
