@@ -65,6 +65,27 @@ class JenazahController extends Controller
         $pesanan = Pesanan::find($request->get('id_pesanan'));
         $data['nama'] = $pesanan->nama;
 
+        $ktp = $request->file('file_ktp');
+        if ($ktp != null) {
+            $filename = date('mdYHis') . uniqid() . $ktp->getClientOriginalName();
+            $ktp->move('uploads', $filename);
+            $data['file_ktp'] = "uploads/$filename";
+        }
+
+        $akta = $request->file('file_akta');
+        if ($akta != null) {
+            $filename = date('mdYHis') . uniqid() . $akta->getClientOriginalName();
+            $akta->move('uploads', $filename);
+            $data['file_akta'] = "uploads/$filename";
+        }
+
+        $kk = $request->file('file_kk');
+        if ($kk != null) {
+            $filename = date('mdYHis') . uniqid() . $kk->getClientOriginalName();
+            $kk->move('uploads', $filename);
+            $data['file_kk'] = "uploads/$filename";
+        }
+
         Jenazah::create($data);
         return redirect()->route('jenazah.index')->with('success', 'Jenazah created successfully.');
     }
@@ -127,6 +148,33 @@ class JenazahController extends Controller
         $data = $request->validated();
         $pesanan = Pesanan::find($request->get('id_pesanan'));
         $data['nama'] = $pesanan->nama;
+
+        $ktp = $request->file('file_ktp');
+        if ($ktp != null) {
+            $filename = date('mdYHis') . uniqid() . $ktp->getClientOriginalName();
+            $ktp->move('uploads', $filename);
+            $data['file_ktp'] = "uploads/$filename";
+        } else {
+            $data['file_ktp'] = $jenazah['file_ktp'];
+        }
+
+        $akta = $request->file('file_akta');
+        if ($akta != null) {
+            $filename = date('mdYHis') . uniqid() . $akta->getClientOriginalName();
+            $akta->move('uploads', $filename);
+            $data['file_akta'] = "uploads/$filename";
+        } else {
+            $data['file_akta'] = $jenazah['file_akta'];
+        }
+
+        $kk = $request->file('file_kk');
+        if ($kk != null) {
+            $filename = date('mdYHis') . uniqid() . $kk->getClientOriginalName();
+            $kk->move('uploads', $filename);
+            $data['file_kk'] = "uploads/$filename";
+        } else {
+            $data['file_kk'] = $jenazah['file_kk'];
+        }
 
         $jenazah->update($data);
         return redirect()->route('jenazah.index')->with('success', 'Jenazah updated successfully.');

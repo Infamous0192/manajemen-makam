@@ -40,9 +40,9 @@ return new class extends Migration
             $table->integer('id_makam')->unsigned()->unique();
             $table->timestamps();
 
-            $table->string('file_ktp', 250);
-            $table->string('file_akta', 250);
-            $table->string('file_kk', 250);
+            $table->string('file_ktp', 250)->default('');
+            $table->string('file_akta', 250)->default('');
+            $table->string('file_kk', 250)->default('');
 
             $table->foreign('id_pesanan')
                 ->references('id')

@@ -27,6 +27,7 @@
                                 <th>Tanggal Lahir</th>
                                 <th>Kewarganegaraan</th>
                                 <th>Makam</th>
+                                <th>Berkas</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -41,6 +42,25 @@
                                 <td>{{ $item->tanggal_lahir }}</td>
                                 <td>{{ $item->kewarganegaraan }}</td>
                                 <td>{{ $item->makam->nama }}-{{ $item->makam->baris }}{{ $item->makam->kolom }}</td>
+                                <td>
+                                    <ul style="padding-left: 1rem">
+                                        @if ($item->file_ktp)
+                                        <li>
+                                            <a target="_blank" href="{{ url($item->file_ktp) }}">KTP</a>
+                                        </li>
+                                        @endif
+                                        @if ($item->file_akta)
+                                        <li>
+                                            <a target="_blank" href="{{ url($item->file_akta) }}">Akta Kematian</a>
+                                        </li>
+                                        @endif
+                                        @if ($item->file_kk)
+                                        <li>
+                                            <a target="_blank" href="{{ url($item->file_kk) }}">KK</a>
+                                        </li>
+                                        @endif
+                                    </ul>
+                                </td>
                                 <td>
                                     <x-action-button :id="$item->id" edit="jenazah.edit" print="jenazah.show"
                                         delete="jenazah.destroy">

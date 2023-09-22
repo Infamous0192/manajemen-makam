@@ -44,6 +44,9 @@ class JenazahRequest extends FormRequest
             'pekerjaan' => 'required|string|max:50',
             'tanggal_meninggal' => 'required|date',
             'tanggal_makam' => 'required|date',
+            'file_ktp' => 'nullable',
+            'file_akta' => 'nullable',
+            'file_kk' => 'nullable',
             'id_pesanan' => [
                 'required',
                 Rule::unique(\App\Models\Jenazah::class, 'id_pesanan')->ignore($this->route('jenazah'), 'id')

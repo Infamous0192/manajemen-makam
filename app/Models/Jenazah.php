@@ -35,6 +35,9 @@ class Jenazah extends Model
         'tanggal_makam',
         'id_pesanan',
         'id_makam',
+        'file_ktp',
+        'file_kk',
+        'file_akta',
     ];
 
     public function pesanan()

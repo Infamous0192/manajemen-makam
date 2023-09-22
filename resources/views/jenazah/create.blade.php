@@ -23,7 +23,7 @@
             <div class="card-header">
                 Tambah Jenazah
             </div>
-            <form action="{{ route('jenazah.store') }}" method="POST">
+            <form action="{{ route('jenazah.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                     <x-select name="id_pesanan" label="Pemesan" placeholder="Pilih Pemesan" :data="$pesanan" />
@@ -96,6 +96,12 @@
                             </div>
                         </div>
                     </div>
+
+                    <hr>
+
+                    <x-text-input type="file" name="file_ktp" label="KTP (Optional)" placeholder="Masukan KTP (optional)" />
+                    <x-text-input type="file" name="file_akta" label="Akta Kematian (Optional)" placeholder="Masukan Akta Kematian (optional)" />
+                    <x-text-input type="file" name="file_kk" label="Kartu Keluarga (Optional)" placeholder="Masukan KK (optional)" />
                 </div>
 
                 <div class="card-footer text-center">
