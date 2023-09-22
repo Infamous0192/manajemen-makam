@@ -365,6 +365,12 @@ return [
                     'roles' => ['admin'],
                 ],
                 [
+                    'text' => 'Fasilitas',
+                    'route'  => 'fasilitas.index',
+                    'icon' => 'far fa-fw fa-circle',
+                    'roles' => ['admin'],
+                ],
+                [
                     'text' => 'Tumpangan',
                     'route'  => 'tumpangan.index',
                     'icon' => 'far fa-fw fa-circle',

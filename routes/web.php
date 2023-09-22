@@ -66,6 +66,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('pengeluaran/print', [App\Http\Controllers\PengeluaranController::class, 'print'])->name('pengeluaran.print');
     Route::resource('pengeluaran', App\Http\Controllers\PengeluaranController::class);
 
+    Route::get('fasilitas/print', [App\Http\Controllers\FasilitasController::class, 'print'])->name('fasilitas.print');
+    Route::resource('fasilitas', App\Http\Controllers\FasilitasController::class)->parameters([
+        'fasilitas' => 'fasilitas',
+    ]);
+
     Route::get('get-mampu', [App\Http\Controllers\MampuController::class, 'getMampu'])->name('get.mampu');
     Route::get('/laporan/mampu', [App\Http\Controllers\LaporanController::class, 'mampu'])->name('laporan.mampu');
     Route::get('/laporan/waris', [App\Http\Controllers\LaporanController::class, 'waris'])->name('laporan.waris');
