@@ -17,6 +17,9 @@ class PembayaranRequest extends FormRequest
             'nama' => 'required|max:50',
             'jenis' => 'required|in:baru,perpanjangan',
             'jumlah' => 'required|integer',
+            'domisili' => 'required',
+            'jasa_gali' => 'required',
+            'jasa_rawat' => 'required',
             'id_jenazah' => 'required|integer|exists:jenazah,id',
             // 'id_makam' => 'required|integer|exists:makam,id',
         ];

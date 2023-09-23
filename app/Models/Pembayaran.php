@@ -15,6 +15,9 @@ class Pembayaran extends Model
         'nama',
         'jenis',
         'jumlah',
+        'domisili',
+        'jasa_gali',
+        'jasa_rawat',
         'id_jenazah',
         'id_makam',
     ];
