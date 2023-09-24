@@ -9,6 +9,36 @@
 @section('content')
 <div class="row">
   <div class="col-12">
+    <div class="card mb-5">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-3 col-6">
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>{{ $total['pendapatan'] }}</h3>
+                <p>Total Pendapatan</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-6">
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>{{ $total['pengeluaran'] }}</h3>
+                <p>Total Pengeluaran</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="card mb-4">
       <div class="card-header d-flex align-items-center">
         <h3 class="card-title mr-4">Data Pendapatan</h3>
@@ -43,6 +73,10 @@
           </table>
         </div>
       </div>
+    </div>
+
+    <div class="p-4 mt-5">
+      <div id="chartPendapatan"></div>
     </div>
 
     <div class="card mb-4">
@@ -80,6 +114,10 @@
         </div>
       </div>
     </div>
+
+    <div class="p-4 mt-5">
+      <div id="chartPengeluaran"></div>
+    </div>
   </div>
 </div>
 @stop
@@ -90,5 +128,74 @@
         $("#table1").DataTable();
         $("#table2").DataTable();
     });
+
+    $(document).ready(function() {
+        const summary = <?= json_encode($rekap) ?>;
+        const { pendapatan, pengeluaran } = summary;
+
+        var options = {
+            series: [{
+                name: "Total",
+                data: pendapatan.map(({ total }) => total)
+            }],
+            chart: {
+                height: 350,
+                type: 'line',
+                zoom: {
+                    enabled: false
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                curve: 'straight'
+            },
+            title: {
+                text: 'Pendapatan per Bulan',
+                align: 'left'
+            },
+            xaxis: {
+                categories: pendapatan.map(({
+                    bulan
+                }) => bulan),
+            }
+        };
+
+        var chartPendapatan = new ApexCharts(document.querySelector("#chartPendapatan"), options);
+        chartPendapatan.render();
+
+        var options = {
+            series: [{
+                name: "Total",
+                data: pengeluaran.map(({ total }) => total)
+            }],
+            chart: {
+                height: 350,
+                type: 'line',
+                zoom: {
+                    enabled: false
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                curve: 'straight'
+            },
+            title: {
+                text: 'Pengeluaran per Bulan',
+                align: 'left'
+            },
+            xaxis: {
+                categories: pengeluaran.map(({
+                    bulan
+                }) => bulan),
+            }
+        };
+
+        var chartPengeluaran = new ApexCharts(document.querySelector("#chartPengeluaran"), options);
+        chartPengeluaran.render();
+    })
 </script>
 @endpush

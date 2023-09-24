@@ -27,6 +27,21 @@
                         ['label' => 'Baru', 'value' => 'baru'],
                         ['label' => 'Perpanjangan', 'value' => 'perpanjangan'],
                     ]" />
+                    <x-select name="domisili" :value="$pembayaran->domisili" label="Domisili"
+                        placeholder="Pilih Domisili" :data="[
+                        ['label' => 'Banjarmasin', 'value' => '0'],
+                        ['label' => 'Luar Banjarmasin', 'value' => '1'],
+                    ]" />
+                    <x-select name="jasa_gali" :value="$pembayaran->jasa_gali" label="Jasa Penggali"
+                        placeholder="Pilih Jasa Penggali" :data="[
+                        ['label' => 'Ya', 'value' => '1'],
+                        ['label' => 'Tidak', 'value' => '0'],
+                    ]" />
+                    <x-select name="jasa_rawat" :value="$pembayaran->jasa_rawat" label="Jasa Perawatan"
+                        placeholder="Pilih Jasa Perawatan" :data="[
+                        ['label' => 'Ya', 'value' => '1'],
+                        ['label' => 'Tidak', 'value' => '0'],
+                    ]" />
                     <x-text-input type="number" readonly name="jumlah" :value="$pembayaran->jumlah" label="Jumlah"
                         placeholder="Masukan Jumlah" />
                 </div>
@@ -44,16 +59,45 @@
 @push('js')
 <script type="text/javascript">
     $(document).ready(function(){
-        $("#jenis").change((e) => {
-            if (e.target.value == 'baru') {
-                return $('#jumlah').val('250000')
-            }
-            if (e.target.value == 'perpanjangan') {
-                return $('#jumlah').val('100000')
+        $('#jenis').change(() => recalculate())
+        $('#domisili').change(() => recalculate())
+        $('#jasa_gali').change(() => recalculate())
+        $('#jasa_rawat').change(() => recalculate())
+
+        function recalculate() {
+            let jumlah = 0
+            
+            const jenis = $("#jenis").val()
+            const domisili = $("#domisili").val()
+            const gali = $('#jasa_gali').val()
+            const rawat = $('#jasa_rawat').val()
+
+            if (jenis == 'baru') {
+                if (domisili == '0') {
+                    jumlah += 5000000
+                }
+                if (domisili == '1') {
+                    jumlah += 7000000
+                }
+                $('#jasa_gali').removeAttr('disabled')
+
+                if (gali == '1') {
+                    jumlah += 1000000
+                }
             }
 
-            return $('#jumlah').val('')
-        })
+            if (jenis == 'perpanjangan') {
+                jumlah += 350000
+                $('#jasa_gali').val('')
+                $('#jasa_gali').attr('disabled', 'true')
+            }
+
+            if (rawat == '1') {
+                jumlah += 250000
+            }
+
+            $('#jumlah').val(jumlah)
+        }
     });
 </script>
 @endpush

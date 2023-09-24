@@ -21,6 +21,20 @@ class KeuanganController extends Controller
         $pembayaran = Pembayaran::all();
         $pengeluaran = Pengeluaran::all();
 
-        return view('keuangan.index', compact('pembayaran', 'pengeluaran'));
+        $total = [
+            'pendapatan' => Pembayaran::sum('jumlah'),
+            'pengeluaran' => Pengeluaran::sum('jumlah'),
+        ];
+
+        $rekap = [
+            'pendapatan' => Pembayaran::selectRaw('MONTH(created_at) AS bulan, SUM(jumlah) AS total')
+                ->groupByRaw('MONTH(created_at)')
+                ->get(),
+            'pengeluaran' => Pengeluaran::selectRaw('MONTH(created_at) AS bulan, SUM(jumlah) AS total')
+                ->groupByRaw('MONTH(created_at)')
+                ->get()
+        ];
+
+        return view('keuangan.index', compact('pembayaran', 'pengeluaran', 'total', 'rekap'));
     }
 }
