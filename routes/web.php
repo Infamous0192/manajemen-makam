@@ -73,4 +73,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('pemeliharaan/print', [App\Http\Controllers\PemeliharaanController::class, 'print'])->name('pemeliharaan.print');
     Route::resource('pemeliharaan', App\Http\Controllers\PemeliharaanController::class);
+
+    Route::get('upah/print', [App\Http\Controllers\UpahController::class, 'print'])->name('upah.print');
+    Route::resource('upah', App\Http\Controllers\UpahController::class);
 });

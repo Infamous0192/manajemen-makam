@@ -381,6 +381,12 @@ return [
                     'route'  => 'tumpangan.index',
                     'icon' => 'far fa-fw fa-circle',
                 ],
+                [
+                    'text' => 'Upah',
+                    'route'  => 'upah.index',
+                    'icon' => 'far fa-fw fa-circle',
+                    'roles' => ['admin'],
+                ],
             ],
         ],
         [
